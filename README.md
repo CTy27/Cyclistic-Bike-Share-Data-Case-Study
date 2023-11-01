@@ -107,7 +107,7 @@ str(all_trips_data)  #See list of columns and data types (numeric, character, et
 summary(all_trips_data)  #Statistical summary of data. Mainly for numerics
 skim_without_charts(all_trips_data)
 ```
-![skim](skim.png)
+![skim](media/skim.png)
 
 This revealed four key problems: 
 
