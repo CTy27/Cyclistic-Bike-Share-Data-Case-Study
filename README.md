@@ -165,9 +165,29 @@ In the analysis portion, I organized, formatted and aggregated the data before l
 | Casual  |  24.07184  | 14.08  | 1439.37  | 1  | Saturday  |
 | Member  | 12.67272 | 9.15  | 1436.33  |  1  | Wednesday |
 
-It started to become clear that there were some key differences about how and when these two types of riders used Cyclistic, noticeably in the day of week most frequently travelled and the average duration of trips. 
 
-This was further explored in the Share section as we started to visualize these patterns and get an even better idea of the story. 
+In the analyze phase of your analysis, you wrote a summary of your analysis. According to the Case Study Roadmap, this summary should discuss organizing and formatting your data. In addition, it should detail any surprises, trends, or relationships you discovered. Lastly, you should summarize how these insights helped you answer your questions. Take a moment to review your summary now. How can you improve it in order to highlight your analysis process in a more compelling way?
+
+Summary: 
+
+It started to become clear that there were some key differences about how and when these two types of riders used Cyclistic, noticeably in the day of week most frequently travelled and the average duration of trips. Not only this, but when in the day different riders were using the service also provided some insights into how they were using Cyclistic.
+
+| Casual  |  Member | 
+| ------------- | ------------- | 
+| Rideship Increased on Weekends|  Ridership Increased on Weekdays |  
+| ------------- | ------------- | 
+| Ride Duration was 24 Minutes on average | Rides duartion was 12 minutes on average |
+| ------------- | ------------- | 
+| Stations used more near parks, recreational areas | Times used were much higher 6AM-5PM, implies commuting|
+| ------------- | ------------- | 
+
+The abvove inights allowed for a much clearer picture of the two main types of users, creating a profile. 
+
+The casual rider typically is using cyclsitic as a leisurely activity or to travel far distances. They ride more frequently in odd hours and on the weekends than members. This leads me to believe that a lot of these casual users may be visiting Chicago and not actually residing within the city. 
+
+Members on the other hand use the service disproportionatly more during commuting hours than any other time of day. This is also true for the fact that their ridership is much higher on weekdays in general. For members, it seems they are using the bike as a form of transportation to and from work. 
+
+These profiles derived from the data are what informed the reccomendations to the marketing team in Step 6: Act
 
 ## Step 5: Share
 
