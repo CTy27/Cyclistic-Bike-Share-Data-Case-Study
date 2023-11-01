@@ -84,6 +84,8 @@ if they have purchased multiple single passes._
 
 ## Step 3: Process
 
+*Then, process your data for analysis.*
+
 #### Key tasks: 
 1. Check the data for errors.
 2. Choose your tools.
@@ -116,6 +118,7 @@ This revealed four key problems:
 3.  There are some rides where trip duration shows up as negative, including several hundred rides where Divvy took bikes out of circulation for Quality control reasons. We will want to delete these rides.
 4. The Start and End station columns are missing from some datapoints. This impacts ~15% of the data.
 
+Starting with the feature engineering, I added the trip duration as well as a few extra features that helped me get better understandings of the data and organize it into different groups for analysis. 
 
 ```{r Feature Engineering, message = FALSE, results ='hide'}
 # Adding new features 
@@ -129,18 +132,29 @@ all_trips_data$trip_name <-    ifelse(all_trips_data$start_station_name == all_t
                                        paste(all_trips_data$start_station_name, "to", all_trips_data$end_station_name)) # Trip route name
 ```
 
+To deal with issues three and four, I filtered out all of the void data based on the trip_duration feature. The data was filtered to only include trips that lasted more than a minute and less than a full day. I also dropped all columns missing values:
 
+```{r Cleaning Data, message = FALSE, results ='hide'}
+all_trips_data <- all_trips_data %>% 
+  drop_na() %>% #drop rows with missing values
+  filter(trip_duration_minutes >= 1, trip_duration_minutes <= 1440) #Set trip duration limits
+```
 
-Then, I removed all data points that had the station information missing. This could be for various reasons but it is impossible to say exactly why. Here are some thoughts: 
+The missing data could have been caused by a variety of factors, but it is impossible to say exactly why. Here are some thoughts: 
 
 1. Ride cancellations. It is possible users started a ride by accident but never unlocked the bike and cancelled it immediately.
 2. Riders leaving a bike somewhere without docking it. In my experience with bike shares, this is an option but it incurs a fee. 
 3. Data collection error. The bike or docking system may have broken and the data was not recorded.
 
+Finally, the data was ready for analysis and this was verified by again using the skim_without_charts() function:
 
+![skim](media/skim_clean.png)
 
+Our final dataset has a size of 4,292,553 rows compared to the raw data which was 5,667,717 rows long. The final dataset is ~75.7% of the original data which is more than enough to have confidence in our analysis. 
 
 ## Step 4: Analyze
+
+*Now that your data is stored appropriately and has been prepared for analysis, start putting it to work.*
 
 In the analysis portion, I organized, formatted and aggregated the data before looking into some statistics to understand the story the data was starting to tell. Applying some basic statistical methods on the trip duration and the number of rides resulted in the following table. (All units in Minutes)
 
@@ -149,27 +163,72 @@ In the analysis portion, I organized, formatted and aggregated the data before l
 | Casual  |  24.07184  | 14.08  | 1439.37  | 1  | Saturday  |
 | Member  | 12.67272 | 9.15  | 1436.33  |  1  | Wednesday |
 
-It started to become clear that there were some key differences about how and when these two types of riders used Cyclistic. 
+It started to become clear that there were some key differences about how and when these two types of riders used Cyclistic, noticeably in the day of week most frequently travelled and the average duration of trips. 
+
+This was further explored in the Share section as we started to visualize these patterns and get an even better idea of the story. 
 
 ## Step 5: Share
 
+Now that you have performed your analysis and gained some insights into your data, create visualizations to share your findings.
+Moreno has reminded you that they should be sophisticated and polished in order to effectively communicate to the executive
+team.
+
+After brainstorming how to visualize the given data, I started with comparing the number of rides taken by each customer group across the months, days of the week and hours of the day. These plots were generated in R and can be seen below. 
 ![ride month](media/ride-by-month.png)
 ![ride day](media/ride-by-day.png)
 ![ride hour](media/ride-by-hour.png)
-![dura month](media/duration-by-month.PNG")
+
+I then decided to look at the same timeframes but change the y value to the average duration of rides over these timeframes. 
+![dura month](media/duration-by-month.png)
 ![dura day](media/duration-by-day.png)
 ![dura hour](media/duration-by-hour.png)
 
-## Step 6: Act
 
+I also created a Tableau dashboard to map the data and create a more cohesive report of the data visualizations. 
+
+---------------------------------
+WIP
+--------------------------------
+
+## Step 6: Act
+*Now that you have finished creating your visualizations, act on your findings. Prepare the deliverables Morena asked you to create,
+including the three top recommendations based on your analysis.*
+
+## *Recommendations*
+
+#### **1. Implementing Seasonal Passes.**
+
+Ridership varies greatly season to season. When the winter approaches, the number of rides decreases drastically. In this case, people may believe a membership to be a waste as they will just have to cancel it when they stop using the service over the winter season. If Cyclistic implemented a Seasonal Pass, it may drive casual users to purchase the membership for the summer months, and may convert them to full membership if they enjoy the benefits of having a membership. 
+
+#### **2. Marketing according to the userbase.**
+
+From the data and the maps in the tableau dashboard, it is clear that members and casuals use different stations. The stations most frequented by members should have advertisements nearby promoting the benefits of a membership. Conversely, the stations identified as used more by casual users should have sign up offers around them to encourage new members. 
+
+
+#### **3. Targeting Daily Commuters**
+
+A good way to increase membership would be to show the benefits of using Cyclistic for their commute. Focusing on the difficulties of using other methods of transportation and the ease of use of the Cyclistic systems for getting to and from work would likely increase member signups. These ads should be shown to users that frequently use stations that other members use. The stations near businesses would likely get the most attention of potential member signups. 
+
+You could place these in subways, buses, trains or any other method of transportation that commuters typically take to work. 
+
+### **Conclusion**
+
+Overall, the analysis went well. The data was adequately processed and analyzed allowing for some key insights to be discovered. With this new information, we have a much better understanding of the overall user base for Cyclistic and how they use it. We understand that members are more likely to use it commuting to and from work, whereas casuals seem to use it for pleasure. 
+
+Cyclistic would be able to leverage this analysis to develop and enact a new marketing strategy centered around increasing members. 
+
+All in all, this was a great opportunity to leverage the technical skills learned through the course and put them all together in a final project.
+
+### **Next Steps**
+
+I wanted to tackle some additional ideas I had that were just outside of the scope of this project, but could provide more impactful insights and actions. There are some features pertaining to user identity that were purposefully excluded from the dataset for privacy issues. I believe this data surrounding who exactly is using the service would be incredibly useful.  
+
+First off, it may have been beneficial to look into individual rider profiles. Looking at the difference between members and casual riders to determine how many rides the average casual vs. member 
+
+Secondly, The payment information from the customers will likely provide an address and town of residence. It would be worthwhile to determine how many of these casual riders actually reside near Chicago. If they are visiting from out of state, it is unlikely that they would be willing to sign up for long term memberships as they wouldn't be a frequent user. That being said, I would use this information to better tailor the ads these users are seeing as it would make sense to push seasonal or week passes to people visiting the city as they are very unlikely to  
 
 # How to Install and Access
 
 You can download the R code in the repository and it should run provided:
 1) You have installed all the packages included in the analyses
 2) You have downloaded all of the datasets (January-December 2022) and stored them in the same directory. 
-
-# Acknowledgement 
-
-# License
-
