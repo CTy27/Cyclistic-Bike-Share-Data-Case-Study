@@ -94,7 +94,6 @@ Early checks were done in excel, ensuring that the data was largely complete and
 
 I verified the condition of the dataset using the below functions: 
 
-
 ```{r Combining Raw Data and Early Statistics, results ='hide', warning = FALSE, echo = FALSE}
 # Combining the data to get the entire year
 all_trips_data <- rbind(january,february,march,april,may,june,july,august,september,
@@ -108,14 +107,31 @@ str(all_trips_data)  #See list of columns and data types (numeric, character, et
 summary(all_trips_data)  #Statistical summary of data. Mainly for numerics
 skim_without_charts(all_trips_data)
 ```
+<img alt="Layer 1,2,3,4" src="media/skim.PNG" width="600"/>
+
 This revealed four key problems: 
 
-(1) The data can only be aggregated at the ride-level, which is too granular. We will to add some additional columns data such as weekday and month.
-(2) We will want to add a calculated field for length of ride since none of the data has a "tripduration" column.
-(3) There are some rides where trip duration shows up as negative, including several hundred rides where Divvy took bikes out of circulation for Quality Control reasons. We will want to delete these rides.
-(4) The Start and End station columns are missing from ~15% of the data. 
+1.  The data can only be aggregated at the ride-level, which is too granular. We will to add some additional columns data such as weekday and month.
+2.  We will want to add a calculated field for length of ride since none of the data has a "tripduration" column.
+3.  There are some rides where trip duration shows up as negative, including several hundred rides where Divvy took bikes out of circulation for Quality control reasons. We will want to delete these rides.
+4. The Start and End station columns are missing from some datapoints. This impacts ~15% of the data.
 
-Here, I removed all data points that had the station information missing. This could be for various reasons but it is impossible to say exactly why. Here are some thoughts: 
+
+```{r Feature Engineering, message = FALSE, results ='hide'}
+# Adding new features 
+
+all_trips_data$trip_duration_minutes <- round(as.numeric(difftime(all_trips_data$ended_at, all_trips_data$started_at, units = "mins")), 2) # Duration of trip
+all_trips_data$day_of_week <- weekdays(all_trips_data$started_at) # Day that ride started at
+all_trips_data$month <- month(all_trips_data$started_at) # Month that ride started at
+all_trips_data$hour <- hour(all_trips_data$started_at) # Hour that ride started at
+all_trips_data$trip_name <-    ifelse(all_trips_data$start_station_name == all_trips_data$end_station_name,
+                                       paste("Round Trip from", all_trips_data$start_station_name),
+                                       paste(all_trips_data$start_station_name, "to", all_trips_data$end_station_name)) # Trip route name
+```
+
+
+
+Then, I removed all data points that had the station information missing. This could be for various reasons but it is impossible to say exactly why. Here are some thoughts: 
 
 1. Ride cancellations. It is possible users started a ride by accident but never unlocked the bike and cancelled it immediately.
 2. Riders leaving a bike somewhere without docking it. In my experience with bike shares, this is an option but it incurs a fee. 
@@ -125,6 +141,14 @@ Here, I removed all data points that had the station information missing. This c
 
 
 ## Step 4: Analyze
+
+In the analysis portion, I organized, formatted and aggregated the data before looking into some statistics to understand the story the data was starting to tell. 
+
+
+| User Type  | Mean | Median | Maximum | Minimum | Mode (Day) |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| Casual  |  24.07184  | 14.08  | 1439.37  | 1  | Saturday  |
+| Member  | 12.67272 | 9.15  | 1436.33  |  1  | Wednesday |
 
 
 
