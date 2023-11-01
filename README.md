@@ -153,12 +153,12 @@ It started to become clear that there were some key differences about how and wh
 
 ## Step 5: Share
 
-<img alt="Layer 1,2,3,4,5,6" src="media/ride-by-month.PNG" width="600"/>
-<img alt="Layer 1,2,3,4,5" src="media/ride-by-day.PNG" width="600"/>
-<img alt="Layer 1,2,3,4" src="media/ride-by-hour.PNG" width="600"/>
-<img alt="Layer 1,2,3" src="media/duration-by-month.PNG" width="600"/>
-<img alt="Layer 1,2" src="media/duration-by-day.PNG" width="600"/>
-<img alt="Layer 1" src="media/duration-by-hour.PNG" width="600"/>
+![ride month](media/ride-by-month.png)
+![ride day](media/ride-by-day.png)
+![ride hour](media/ride-by-hour.png)
+![dura month](media/duration-by-month.PNG")
+![dura day](media/duration-by-day.png)
+![dura hour](media/duration-by-hour.png)
 
 ## Step 6: Act
 
