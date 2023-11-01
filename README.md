@@ -165,9 +165,6 @@ In the analysis portion, I organized, formatted and aggregated the data before l
 | Casual  |  24.07184  | 14.08  | 1439.37  | 1  | Saturday  |
 | Member  | 12.67272 | 9.15  | 1436.33  |  1  | Wednesday |
 
-
-In the analyze phase of your analysis, you wrote a summary of your analysis. According to the Case Study Roadmap, this summary should discuss organizing and formatting your data. In addition, it should detail any surprises, trends, or relationships you discovered. Lastly, you should summarize how these insights helped you answer your questions. Take a moment to review your summary now. How can you improve it in order to highlight your analysis process in a more compelling way?
-
 Summary: 
 
 It started to become clear that there were some key differences about how and when these two types of riders used Cyclistic, noticeably in the day of week most frequently travelled and the average duration of trips. Not only this, but when in the day different riders were using the service also provided some insights into how they were using Cyclistic.
