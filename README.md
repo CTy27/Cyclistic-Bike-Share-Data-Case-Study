@@ -107,7 +107,7 @@ str(all_trips_data)  #See list of columns and data types (numeric, character, et
 summary(all_trips_data)  #Statistical summary of data. Mainly for numerics
 skim_without_charts(all_trips_data)
 ```
-<img alt="Layer 1,2,3,4" src="media/skim.PNG" width="600"/>
+![skim](https://github.com/CTy27/Cyclistic-Bike-Share-Data-Case-Study/tree/main/media/skim.PNG)
 
 This revealed four key problems: 
 
