@@ -142,17 +142,23 @@ Then, I removed all data points that had the station information missing. This c
 
 ## Step 4: Analyze
 
-In the analysis portion, I organized, formatted and aggregated the data before looking into some statistics to understand the story the data was starting to tell. 
-
+In the analysis portion, I organized, formatted and aggregated the data before looking into some statistics to understand the story the data was starting to tell. Applying some basic statistical methods on the trip duration and the number of rides resulted in the following table. (All units in Minutes)
 
 | User Type  | Mean | Median | Maximum | Minimum | Mode (Day) |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | Casual  |  24.07184  | 14.08  | 1439.37  | 1  | Saturday  |
 | Member  | 12.67272 | 9.15  | 1436.33  |  1  | Wednesday |
 
-
+It started to become clear that there were some key differences about how and when these two types of riders used Cyclistic. 
 
 ## Step 5: Share
+
+<img alt="Layer 1,2,3,4,5,6" src="media/ride-by-month.PNG" width="600"/>
+<img alt="Layer 1,2,3,4,5" src="media/ride-by-day.PNG" width="600"/>
+<img alt="Layer 1,2,3,4" src="media/ride-by-hour.PNG" width="600"/>
+<img alt="Layer 1,2,3" src="media/duration-by-month.PNG" width="600"/>
+<img alt="Layer 1,2" src="media/duration-by-day.PNG" width="600"/>
+<img alt="Layer 1" src="media/duration-by-hour.PNG" width="600"/>
 
 ## Step 6: Act
 
